@@ -263,16 +263,6 @@ Widget activeOrderCard(BuildContext context, snapshot, index, setState) {
                 color: CustomColors.customYellow,
                 size: CustomSizes().dynamicHeight(context, 0.015),
               ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.circle_outlined,
-                color: CustomColors.customYellow,
-                size: CustomSizes().dynamicHeight(context, 0.015),
-              ),
               Flexible(
                 child: Padding(
                   padding: EdgeInsets.symmetric(
