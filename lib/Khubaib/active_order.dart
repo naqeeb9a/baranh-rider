@@ -246,7 +246,9 @@ Widget activeOrderCard(BuildContext context, snapshot, index, setState) {
               snapshot[index]["delorderstatus"] == "pending" ||
                       snapshot[index]["delorderstatus"] == null
                   ? "New Order to pick"
-                  : "Order is on the way",
+                  : snapshot[index]["delorderstatus"] == "delivered"
+                      ? "Delivered"
+                      : "Order is on the way",
               0.035,
               snapshot[index]["delorderstatus"] == "pending" ||
                       snapshot[index]["delorderstatus"] == null

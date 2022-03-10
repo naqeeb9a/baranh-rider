@@ -1,10 +1,7 @@
 import 'dart:convert';
-
-import 'package:baranh_rider/Screens/pick_up_centers.dart';
 import 'package:baranh_rider/utils/config.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Khubaib/help_center.dart';
 import '../Khubaib/personal_detail.dart';
 import '../Widgets/text_widget.dart';
@@ -109,11 +106,6 @@ class _ProfileState extends State<Profile> {
                     riderDetails: riderData["data"],
                   )),
             ),
-            CustomSizes().heightBox(context, 0.02),
-            cards(context, Icons.business_center_sharp, "Pick-up centers", true,
-                check2: true, function: () {
-              CustomRoutes().push(context, const PickUpCenters());
-            }),
             CustomSizes().heightBox(context, 0.02),
             cards(
               context,
