@@ -21,15 +21,19 @@ class CompletedOrder extends StatefulWidget {
 
 class _CompletedOrderState extends State<CompletedOrder>
     with SingleTickerProviderStateMixin {
+     late final AnimationController _controller;
   @override
-  void initState() {
+ void initState() {
+    _controller =
+        AnimationController(duration: const Duration(seconds: 20), vsync: this);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: completedOrder(context, setState),
+      backgroundColor: CustomColors.customBlack,
+      body: noCompletedOrder(context, _controller),
     );
   }
 }
@@ -70,7 +74,7 @@ Widget completedOrder(context, setState) {
               return retry(context);
             } else if (snapshot.data.length == 0) {
               return text(
-                  context, "No Active Orders", 0.04, CustomColors.customBlack);
+                  context, "No Active Orders", 0.04, CustomColors.customWhite);
             } else {
               return ListView.builder(
                 padding: EdgeInsets.symmetric(
@@ -132,10 +136,11 @@ Widget completedOrderCard(
                   ),
                 ),
                 child: text(
-                    context,
-                    "Order no #" + snapshot[index]["custRefNo"].toString(),
-                    0.03,
-                    CustomColors.customBlack),
+                  context,
+                  "Order no #" + snapshot[index]["custRefNo"].toString(),
+                  0.03,
+                  CustomColors.customWhite,
+                ),
               )
             ],
           ),
@@ -144,7 +149,7 @@ Widget completedOrderCard(
               "\$" +
                   double.parse(snapshot[index]["codAmount"]).toStringAsFixed(0),
               0.04,
-              CustomColors.customBlack,
+              CustomColors.customWhite,
               bold: true),
           text(context, snapshot[index]["reviews"].toString(), 0.03,
               CustomColors.customLightBlack,
@@ -160,7 +165,7 @@ Widget completedOrderCard(
             unratedColor: CustomColors.customGrey,
             itemBuilder: (context, _) => const Icon(
               Icons.star_rounded,
-              color: CustomColors.customYellow,
+              color: CustomColors.customOrange,
             ),
             onRatingUpdate: (rating) {},
           ),
@@ -171,12 +176,12 @@ Widget completedOrderCard(
                   horizontal: CustomSizes().dynamicWidth(context, 0.05),
                   vertical: CustomSizes().dynamicHeight(context, 0)),
               decoration: BoxDecoration(
-                color: CustomColors.customYellow,
+                color: CustomColors.customOrange,
                 borderRadius: BorderRadius.circular(
                   CustomSizes().dynamicWidth(context, 0.05),
                 ),
               ),
-              child: text(context, "RATE", 0.035, CustomColors.customBlack,
+              child: text(context, "RATE", 0.035, CustomColors.customWhite,
                   bold: true),
             ),
           )

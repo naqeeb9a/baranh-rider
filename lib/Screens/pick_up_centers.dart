@@ -1,4 +1,3 @@
-
 import 'package:baranh_rider/Screens/login.dart';
 import 'package:baranh_rider/utils/dynamic_sizes.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class PickUpCenters extends StatelessWidget {
           context: context,
           text1: "Pick-up Centers",
           automaticallyImplyLeading: true,
-          backgroundColor: CustomColors.customYellow),
+          backgroundColor: CustomColors.customOrange),
       body: FutureBuilder(
           future: RiderFunctionality().getRiderPickUpCenters("pick-up-centres"),
           builder: (context, AsyncSnapshot snapshot) {

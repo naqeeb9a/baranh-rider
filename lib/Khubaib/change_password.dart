@@ -16,6 +16,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.customBlack,
       body: Column(
         children: [
           topBar(context, "Change Password"),
@@ -30,8 +31,8 @@ class _ChangePasswordState extends State<ChangePassword> {
             child: colorfulButton(
               context,
               "Change Password",
-              CustomColors.customYellow,
-              CustomColors.customYellow,
+              CustomColors.customOrange,
+              CustomColors.customOrange,
               FontWeight.bold,
               // function: () {
               //   CustomRoutes().push(context, const TrackDetail());

@@ -1,4 +1,3 @@
-
 import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +55,7 @@ class _LocationDetailsState extends State<LocationDetails> {
                 children: [
                   CircleAvatar(
                     radius: CustomSizes().dynamicHeight(context, .02),
-                    backgroundColor: CustomColors.customYellow,
+                    backgroundColor: CustomColors.customOrange,
                     child: Center(
                       child: text(
                         context,
@@ -88,7 +87,7 @@ class _LocationDetailsState extends State<LocationDetails> {
                   CustomSizes().widthBox(context, .02),
                   const Icon(
                     Icons.lock,
-                    color: CustomColors.customYellow,
+                    color: CustomColors.customOrange,
                   ),
                   CustomSizes().widthBox(context, .04),
                 ],
@@ -105,7 +104,7 @@ class _LocationDetailsState extends State<LocationDetails> {
                   CustomSizes().widthBox(context, .02),
                   const Icon(
                     Icons.phone_android_rounded,
-                    color: CustomColors.customYellow,
+                    color: CustomColors.customOrange,
                   ),
                   CustomSizes().widthBox(context, .04),
                 ],
@@ -220,7 +219,7 @@ class _LocationDetailsState extends State<LocationDetails> {
                 children: [
                   CircleAvatar(
                     radius: CustomSizes().dynamicHeight(context, .02),
-                    backgroundColor: CustomColors.customYellow,
+                    backgroundColor: CustomColors.customOrange,
                     child: Center(
                       child: text(
                         context,
@@ -252,7 +251,7 @@ class _LocationDetailsState extends State<LocationDetails> {
                   CustomSizes().widthBox(context, .02),
                   const Icon(
                     Icons.lock,
-                    color: CustomColors.customYellow,
+                    color: CustomColors.customOrange,
                   ),
                   CustomSizes().widthBox(context, .04),
                 ],
@@ -269,7 +268,7 @@ class _LocationDetailsState extends State<LocationDetails> {
                   CustomSizes().widthBox(context, .02),
                   const Icon(
                     Icons.phone_android_rounded,
-                    color: CustomColors.customYellow,
+                    color: CustomColors.customOrange,
                   ),
                   CustomSizes().widthBox(context, .04),
                 ],
@@ -382,8 +381,8 @@ class _LocationDetailsState extends State<LocationDetails> {
               child: colorfulButton(
                 context,
                 "Add Delivery Point",
-                CustomColors.customYellow,
-                CustomColors.customYellow,
+                CustomColors.customOrange,
+                CustomColors.customOrange,
                 FontWeight.bold,
                 // function: () {
                 //   CustomRoutes().push(context, const TrackDetail());

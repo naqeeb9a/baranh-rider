@@ -1,4 +1,3 @@
-
 import 'package:baranh_rider/Khubaib/submit_order.dart';
 import 'package:baranh_rider/Khubaib/track_order.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +66,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
             child: Row(
               children: [
                 const Icon(Icons.bookmark_outlined,
-                    color: CustomColors.customYellow),
+                    color: CustomColors.customOrange),
                 text(context, "Promo Code", 0.04, CustomColors.customLightBlack,
                     bold: true),
                 CustomSizes().widthBox(context, 0.5),
@@ -143,11 +142,11 @@ Widget preferencesWidget(context, text1, icon, {button = false}) {
         icon == true
             ? const Icon(
                 Icons.question_mark_sharp,
-                color: CustomColors.customYellow,
+                color: CustomColors.customOrange,
               )
             : button == true
                 ? Switch(
-                    activeColor: CustomColors.customYellow,
+                    activeColor: CustomColors.customOrange,
                     inactiveTrackColor: CustomColors.customGrey,
                     onChanged: (value) {},
                     value: true,

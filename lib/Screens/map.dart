@@ -44,7 +44,7 @@ class DisplayMapState extends State<DisplayMap> {
           context: context,
           text1: "Location",
           automaticallyImplyLeading: true,
-          backgroundColor: CustomColors.customYellow),
+          backgroundColor: CustomColors.customOrange),
       body: GoogleMap(
         markers: markers,
         initialCameraPosition: _kGooglePlex,

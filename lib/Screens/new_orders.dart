@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../Khubaib/book_courier.dart';
@@ -49,7 +48,7 @@ cards(context, icon, text, check, {check2 = false, function = ""}) {
   return InkWell(
     onTap: function == "" ? () {} : function,
     child: Container(
-      color: Colors.white,
+      color: CustomColors.customGrey.withOpacity(0.2),
       padding: EdgeInsets.all(CustomSizes().dynamicWidth(context, 0.03)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,17 +68,20 @@ cards(context, icon, text, check, {check2 = false, function = ""}) {
                 ),
                 child: Icon(
                   icon,
-                  color: CustomColors.customYellow,
+                  color: CustomColors.customOrange,
                 ),
               ),
               CustomSizes().widthBox(context, 0.03),
-              Text(text)
+              Text(
+                text,
+                style: TextStyle(color: CustomColors.customWhite),
+              )
             ],
           ),
           check2 == true
               ? const Icon(
                   Icons.arrow_forward_ios,
-                  color: Colors.grey,
+                  color: CustomColors.customWhite,
                 )
               : Container(),
         ],
@@ -96,7 +98,7 @@ topBar(context, text) {
       right: CustomSizes().dynamicWidth(context, 0.05),
       bottom: CustomSizes().dynamicWidth(context, 0.04),
     ),
-    color: CustomColors.customYellow,
+    color: CustomColors.customOrange,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -116,7 +118,8 @@ topBar(context, text) {
           alignment: Alignment.center,
           child: Text(
             text,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: CustomColors.customWhite),
           ),
         ),
         CircleAvatar(

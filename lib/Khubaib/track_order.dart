@@ -1,4 +1,3 @@
-
 import 'package:baranh_rider/Khubaib/track_detail.dart';
 import 'package:flutter/material.dart';
 
@@ -26,15 +25,19 @@ class _TrackOrderState extends State<TrackOrder> {
           trackTextField(context, "Enter Order Number"),
           CustomSizes().heightBox(context, 0.09),
           Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: CustomSizes().dynamicWidth(context, 0.05)),
-              child: colorfulButton(context, "Track", CustomColors.customYellow,
-                  CustomColors.customYellow, FontWeight.bold,
-                   function: () {
-                      CustomRoutes().push(context,const TrackDetail());
-                    },),
+            padding: EdgeInsets.symmetric(
+                horizontal: CustomSizes().dynamicWidth(context, 0.05)),
+            child: colorfulButton(
+              context,
+              "Track",
+              CustomColors.customOrange,
+              CustomColors.customOrange,
+              FontWeight.bold,
+              function: () {
+                CustomRoutes().push(context, const TrackDetail());
+              },
             ),
-         
+          ),
         ],
       ),
     );
@@ -54,7 +57,7 @@ Widget trackTextField(context, hintText, {border = true}) {
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color:
-              border == true ? CustomColors.customYellow : CustomColors.noColor,
+              border == true ? CustomColors.customOrange : CustomColors.noColor,
           width: CustomSizes().dynamicWidth(context, .0065),
         ),
       ),

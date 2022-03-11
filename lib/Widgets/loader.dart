@@ -13,6 +13,7 @@ class Loader extends StatelessWidget {
       child: LottieBuilder.asset(
         "assets/loading.json",
         width: CustomSizes().dynamicWidth(context, 0.4),
+        
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:baranh_rider/utils/config.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/dynamic_sizes.dart';
@@ -19,7 +20,7 @@ colorfulButton(context, text, buttonColor, borderColor, fontWeight,
             child: Center(
                 child: Text(
               text,
-              style: TextStyle(fontWeight: fontWeight),
+              style: TextStyle(fontWeight: fontWeight,color :CustomColors.customWhite),
             )),
           ),
         ),

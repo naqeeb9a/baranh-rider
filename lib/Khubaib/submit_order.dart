@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../Screens/new_orders.dart';
@@ -49,7 +48,7 @@ class _SubmitOrderState extends State<SubmitOrder> {
               shrinkWrap: true,
               itemCount: 5,
               itemBuilder: (BuildContext context, int index) {
-                return orderCard(context, index, "","");
+                return orderCard(context, index, "", "");
               },
             ),
           )
@@ -59,20 +58,20 @@ class _SubmitOrderState extends State<SubmitOrder> {
   }
 }
 
-Widget orderCard(context, index, text1,mobileNumber, {icon = false}) {
+Widget orderCard(context, index, text1, mobileNumber, {icon = false}) {
   return Container(
     margin: EdgeInsets.symmetric(
         vertical: CustomSizes().dynamicHeight(context, 0.01)),
     padding: EdgeInsets.symmetric(
         horizontal: CustomSizes().dynamicWidth(context, 0.05),
         vertical: CustomSizes().dynamicWidth(context, 0.05)),
-    color: CustomColors.customWhite,
+    color: CustomColors.customGrey.withOpacity(0.2),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         CircleAvatar(
           radius: CustomSizes().dynamicWidth(context, 0.05),
-          backgroundColor: CustomColors.customYellow,
+          backgroundColor: CustomColors.customOrange,
           child: text(context, index, 0.045, CustomColors.customWhite),
         ),
         SizedBox(
@@ -123,7 +122,7 @@ Widget orderBottomBar(context, title, {function = ""}) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        text(context, "\$1300", 0.038, CustomColors.customYellow, bold: true),
+        text(context, "\$1300", 0.038, CustomColors.customOrange, bold: true),
         InkWell(
           onTap: function == "" ? () {} : function,
           child: Row(children: [

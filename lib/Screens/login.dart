@@ -37,10 +37,11 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor :CustomColors.customBlack,
       appBar: customAppbar(
           context: context,
           automaticallyImplyLeading: false,
-          backgroundColor: CustomColors.customYellow,
+          backgroundColor: CustomColors.customOrange,
           text1: "Login"),
       body: Center(
         child: SingleChildScrollView(
@@ -73,8 +74,8 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   loadingButton() {
     return RoundedLoadingButton(
-      color: CustomColors.customYellow,
-      child: const Text('Sign in', style: TextStyle(color: Colors.black)),
+      color: CustomColors.customOrange,
+      child: const Text('Sign in', style: TextStyle(color: CustomColors.customWhite)),
       controller: _btnController,
       onPressed: () async {
         _controller.forward();
@@ -142,6 +143,6 @@ customAppbar(
     automaticallyImplyLeading: automaticallyImplyLeading,
     backgroundColor: backgroundColor,
     centerTitle: true,
-    title: text(context, text1, 0.04, CustomColors.customBlack),
+    title: text(context, text1, 0.04, CustomColors.customWhite),
   );
 }

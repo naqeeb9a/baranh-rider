@@ -35,11 +35,12 @@ class _OrderDetailState extends State<OrderDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.customBlack,
       appBar: customAppbar(
           context: context,
           text1: "Order " + widget.snapshot[widget.index]["sale_no"].toString(),
           automaticallyImplyLeading: true,
-          backgroundColor: CustomColors.customYellow),
+          backgroundColor: CustomColors.customOrange),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: Column(
@@ -54,7 +55,7 @@ class _OrderDetailState extends State<OrderDetail> {
               //         ? false
               //         : true,
               child: RoundedLoadingButton(
-                color: CustomColors.customYellow,
+                color: CustomColors.customOrange,
                 controller: _buttonController1,
                 onPressed: () async {
                   final cameras = await availableCameras();
@@ -69,7 +70,7 @@ class _OrderDetailState extends State<OrderDetail> {
                   _buttonController1.reset();
                 },
                 child: text(
-                    context, "Undelivered", 0.04, CustomColors.customBlack),
+                    context, "Undelivered", 0.04, CustomColors.customWhite),
               ),
             ),
             const SizedBox(
@@ -81,7 +82,7 @@ class _OrderDetailState extends State<OrderDetail> {
                       ? false
                       : true,
               child: RoundedLoadingButton(
-                color: CustomColors.customYellow,
+                color: CustomColors.customOrange,
                 child: text(
                     context,
                     widget.snapshot[widget.index]["delorderstatus"] ==
@@ -91,7 +92,7 @@ class _OrderDetailState extends State<OrderDetail> {
                         ? "Picked"
                         : "Delivered",
                     0.04,
-                    CustomColors.customBlack),
+                    CustomColors.customWhite),
                 onPressed: () async {
                   var res = await RiderFunctionality().setOrderStatus(
                       widget.snapshot[widget.index]["sale_no"],
@@ -177,12 +178,12 @@ Widget orderBox(context, title, title1) {
     padding: EdgeInsets.symmetric(
       horizontal: CustomSizes().dynamicWidth(context, .05),
     ),
-    color: CustomColors.customWhite,
+    color: CustomColors.customGrey.withOpacity(0.2),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         text(context, title, 0.035, CustomColors.customGrey, bold: true),
-        text(context, title1, 0.035, CustomColors.customLightBlack, bold: true),
+        text(context, title1, 0.035, CustomColors.customWhite, bold: true),
       ],
     ),
   );

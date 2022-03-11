@@ -22,11 +22,12 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.customBlack,
       appBar: customAppbar(
           context: context,
           text1: "Personal Details",
           automaticallyImplyLeading: true,
-          backgroundColor: CustomColors.customYellow),
+          backgroundColor: CustomColors.customOrange),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -58,6 +59,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
               child: Text(
                 'Change your Password',
                 style: TextStyle(
+                  color: CustomColors.customWhite,
                   fontSize: CustomSizes().dynamicHeight(context, 0.015),
                   fontWeight: FontWeight.w700,
                   decoration: TextDecoration.underline,
@@ -72,8 +74,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             child: colorfulButton(
                 context,
                 "Edit Profile",
-                CustomColors.customYellow,
-                CustomColors.customYellow,
+                CustomColors.customOrange,
+                CustomColors.customOrange,
                 FontWeight.bold),
           ),
         ],

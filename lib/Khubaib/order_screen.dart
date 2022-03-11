@@ -1,4 +1,3 @@
-
 import 'package:baranh_rider/Khubaib/active_order.dart';
 import 'package:baranh_rider/Khubaib/completed.dart';
 import 'package:baranh_rider/utils/config.dart';
@@ -24,15 +23,15 @@ class _OrderScreenState extends State<OrderScreen> {
               context: context,
               text1: "Orders",
               automaticallyImplyLeading: false,
-              backgroundColor: CustomColors.customYellow),
+              backgroundColor: CustomColors.customOrange),
           body: Column(
             children: [
               Container(
                 height: CustomSizes().dynamicHeight(context, 0.06),
-                color: CustomColors.customWhite,
+                color: CustomColors.customBlack.withOpacity(.9),
                 child: const TabBar(
-                  indicatorColor: CustomColors.customYellow,
-                  labelColor: CustomColors.customBlack,
+                  indicatorColor: CustomColors.customOrange,
+                  labelColor: CustomColors.customWhite,
                   unselectedLabelColor: CustomColors.customGrey,
                   tabs: [
                     Tab(text: "ACTIVE"),

@@ -59,7 +59,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           context: context,
           text1: "Take a picture",
           automaticallyImplyLeading: true,
-          backgroundColor: CustomColors.customYellow),
+          backgroundColor: CustomColors.customOrange),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
@@ -79,7 +79,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                   snapshot: widget.snapshot,
                   index: widget.index,
                 ),
-                text(context, "Photo", 0.04, CustomColors.customYellow),
+                text(context, "Photo", 0.04, CustomColors.customOrange),
                 const SizedBox(
                   height: 10,
                 )
@@ -133,7 +133,7 @@ class _ClickPictureState extends State<ClickPicture> {
           // final XFile image = await widget.controller.takePicture();
           // final encodeImage = base64Encode(await image.readAsBytes());
           var res = await RiderFunctionality().setOrderStatus(
-              widget.snapshot[widget.index]["sale_no"], "not at home", "0","");
+              widget.snapshot[widget.index]["sale_no"], "not at home", "0", "");
           if (res == false) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: text(context, "Check your internt or try again", 0.04,

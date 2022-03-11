@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -49,13 +47,13 @@ class _RatingScreenState extends State<RatingScreen> {
                   unratedColor: CustomColors.customGrey,
                   itemBuilder: (context, _) => const Icon(
                     Icons.star_rounded,
-                    color: CustomColors.customYellow,
+                    color: CustomColors.customOrange,
                   ),
                   onRatingUpdate: (rating) {},
                 ),
                 CustomSizes().heightBox(context, 0.09),
-                colorfulButton(context, "Submit", CustomColors.customYellow,
-                    CustomColors.customYellow, FontWeight.bold),
+                colorfulButton(context, "Submit", CustomColors.customOrange,
+                    CustomColors.customOrange, FontWeight.bold),
               ],
             ),
           )
@@ -85,7 +83,7 @@ Widget personCard(context,
         : EdgeInsets.symmetric(
             vertical: CustomSizes().dynamicHeight(context, 0)),
     color: containerColor == true
-        ? CustomColors.customWhite
+        ? CustomColors.customGrey.withOpacity(.2)
         : CustomColors.noColor,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,14 +93,14 @@ Widget personCard(context,
                 width: CustomSizes().dynamicWidth(context, 0.12),
                 height: CustomSizes().dynamicHeight(context, 0.06),
                 decoration: BoxDecoration(
-                  border: Border.all(color: CustomColors.customYellow),
+                  border: Border.all(color: CustomColors.customOrange),
                   borderRadius: BorderRadius.circular(
                     CustomSizes().dynamicWidth(context, 0.025),
                   ),
                 ),
                 child: const Icon(
                   Icons.person,
-                  color: CustomColors.customYellow,
+                  color: CustomColors.customOrange,
                 ))
             : Container(
                 width: CustomSizes().dynamicWidth(context, 0.2),
@@ -121,10 +119,10 @@ Widget personCard(context,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            text(context, "    $name", 0.04, CustomColors.customBlack,
+            text(context, "    $name", 0.04, CustomColors.customWhite,
                 bold: true),
             CustomSizes().heightBox(context, 0.02),
-            text(context, "    $phone", 0.04, CustomColors.customBlack,
+            text(context, "    $phone", 0.04, CustomColors.customWhite,
                 bold: true)
           ],
         ),

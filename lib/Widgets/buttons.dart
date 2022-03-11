@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import '../utils/config.dart';
 import '../utils/dynamic_sizes.dart';
 
-
-
 Widget coloredButton(context, text, color,
     {function = "", width = "", fontSize = 0.04, fontColor = true}) {
   return GestureDetector(
@@ -60,7 +58,7 @@ Widget retry(context) {
         coloredButton(
           context,
           "Retry",
-          CustomColors.customYellow,
+          CustomColors.customOrange,
           width: CustomSizes().dynamicWidth(context, .4),
           function: () {},
         ),

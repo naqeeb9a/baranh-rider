@@ -46,11 +46,12 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: CustomColors.customBlack,
         appBar: customAppbar(
             context: context,
             text1: "Profile",
             automaticallyImplyLeading: false,
-            backgroundColor: CustomColors.customYellow),
+            backgroundColor: CustomColors.customOrange),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -68,21 +69,23 @@ class _ProfileState extends State<Profile> {
                             ? "...."
                             : riderData["data"]["full_name"].toString(),
                         0.04,
-                        CustomColors.customBlack),
+                        CustomColors.customWhite),
                     trailing: text(
                         context,
                         riderData.isEmpty
                             ? "...."
                             : riderData["data"]["designation"].toString(),
                         0.04,
-                        CustomColors.customBlack),
+                        CustomColors.customWhite),
                   ),
                   CustomSizes().heightBox(context, 0.01),
                   Text(
                     riderData.isEmpty
                         ? "...."
                         : riderData["data"]["phone"].toString(),
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: CustomColors.customWhite),
                   ),
                   CustomSizes().heightBox(context, 0.03),
                   const Text(

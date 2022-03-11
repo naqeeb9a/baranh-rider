@@ -3,6 +3,7 @@ import 'package:baranh_rider/Khubaib/rating.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/new_orders.dart';
+import '../utils/config.dart';
 import '../utils/dynamic_sizes.dart';
 
 class HelpCenterScreen extends StatefulWidget {
@@ -16,6 +17,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: CustomColors.customBlack,
       body: Column(
         children: [
           topBar(context, "Help Center"),
@@ -23,7 +25,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
           ListView.builder(
             padding: EdgeInsets.symmetric(
               vertical: CustomSizes().dynamicHeight(context, 0),
-              // horizontal: CustomSizes().dynamicWidth(context, 0.05),
+          
             ),
             itemCount: 4,
             shrinkWrap: true,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../Widgets/colorful_button.dart';
@@ -64,8 +63,8 @@ class _RegistrationState extends State<Registration> {
               child: colorfulButton(
                   context,
                   "Register",
-                  CustomColors.customYellow,
-                  CustomColors.customYellow,
+                  CustomColors.customOrange,
+                  CustomColors.customOrange,
                   FontWeight.bold),
             ),
             CustomSizes().heightBox(context, 0.02),
@@ -106,7 +105,7 @@ Widget multiColorText(context, text, text1) {
             TextSpan(
                 text: text1,
                 style: TextStyle(
-                    color: CustomColors.customYellow,
+                    color: CustomColors.customOrange,
                     fontWeight: FontWeight.bold,
                     fontSize: CustomSizes().dynamicWidth(context, 0.025))),
           ],
@@ -116,7 +115,8 @@ Widget multiColorText(context, text, text1) {
   );
 }
 
-Widget registerInputField(context, text1,TextEditingController  controller, hintText,
+Widget registerInputField(
+    context, text1, TextEditingController controller, hintText,
     {bool password = false, bool enable = true}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
@@ -126,22 +126,25 @@ Widget registerInputField(context, text1,TextEditingController  controller, hint
           padding:
               EdgeInsets.only(left: CustomSizes().dynamicWidth(context, 0.05)),
           child:
-              text(context, text1, 0.03, CustomColors.customGrey, bold: true)),
+              text(context, text1, 0.03, CustomColors.customWhite, bold: true)),
       TextFormField(
         controller: controller,
         enabled: enable,
         obscureText: password == true ? true : false,
-        cursorColor: Colors.black,
+        cursorColor: Colors.white,
+        style: const TextStyle(color: CustomColors.customWhite),
         decoration: InputDecoration(
           hintText: hintText,
+          hintStyle: const TextStyle(color: CustomColors.customWhite),
           suffixIcon: password == true
               ? const InkWell(
-                  child: Icon(Icons.visibility_outlined),
+                  child: Icon(Icons.visibility_outlined,
+                      color: CustomColors.customWhite),
                 )
               : null,
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: CustomColors.customYellow,
+              color: CustomColors.customOrange,
               width: CustomSizes().dynamicWidth(context, 0.0065),
             ),
           ),
@@ -149,7 +152,7 @@ Widget registerInputField(context, text1,TextEditingController  controller, hint
               horizontal: CustomSizes().dynamicWidth(context, 0.05)),
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
-              color: CustomColors.customGrey,
+              color: CustomColors.customWhite,
             ),
           ),
         ),

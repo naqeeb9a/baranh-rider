@@ -1,4 +1,3 @@
-
 import 'package:baranh_rider/Screens/person.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,29 +46,30 @@ class _CustomTabBarState extends State<CustomTabBar>
                 ],
               ),
             ),
-            bottomNavigationBar: SizedBox(
+            bottomNavigationBar: Container(
               height: CustomSizes().dynamicHeight(context, 0.07),
+              color : CustomColors.customBlack.withOpacity(.9),
               child: TabBar(
                 indicatorSize: TabBarIndicatorSize.label,
                 labelStyle: const TextStyle(color: CustomColors.customGrey),
-                unselectedLabelColor: CustomColors.customBlack,
+                unselectedLabelColor: CustomColors.customWhite,
                 unselectedLabelStyle:
                     const TextStyle(color: CustomColors.customGrey),
                 controller: _tabController,
-                labelColor: Colors.amber,
-                indicatorColor: Colors.amber,
+                labelColor: CustomColors.customOrange,
+                indicatorColor: CustomColors.customOrange,
                 tabs: const [
                   Tab(
                       text: "Order",
                       icon: Icon(
                         Icons.list,
-                        color: CustomColors.customYellow,
+                        color: CustomColors.customOrange,
                       )),
                   Tab(
                       text: "Profile",
                       icon: Icon(
                         Icons.person,
-                        color: CustomColors.customYellow,
+                        color: CustomColors.customOrange,
                       )),
                 ],
               ),

@@ -20,6 +20,7 @@ class _ActiveOrderState extends State<ActiveOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.customBlack,
       body: activeOrder(context, () {
         setState(() {});
       }),
@@ -31,7 +32,7 @@ Widget noActiverOrder(context) {
   return Container(
     width: CustomSizes().dynamicWidth(context, 1),
     height: CustomSizes().dynamicHeight(context, 1),
-    color: CustomColors.customGrey.withOpacity(0.2),
+    color: CustomColors.customWhite.withOpacity(0.2),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +42,7 @@ Widget noActiverOrder(context) {
             "https://www.pngkit.com/png/full/72-724560_png-file-tracking-parcel-png.png",
             "Send Package",
             "Deliver or recieve items such as gifts ,documents,keys",
-            CustomColors.customYellow),
+            CustomColors.customOrange),
         CustomSizes().heightBox(context, 0.065),
         noactiveOrderCard(
             context,
@@ -131,23 +132,25 @@ Widget activeOrder(context, setState) {
                           width: 20,
                         ),
                         ChoiceChip(
-                            selectedColor: CustomColors.customYellow,
+                            backgroundColor: CustomColors.customBlack,
+                            selectedColor: CustomColors.customOrange,
                             onSelected: (value) => changeState(() {
                                   isSelected1 = value;
                                 }),
-                            label:
-                                text(context, "New Orders", 0.03, Colors.black),
+                            label: text(context, "New Orders", 0.03,
+                                CustomColors.customWhite),
                             selected: isSelected1),
                         const SizedBox(
                           width: 20,
                         ),
                         ChoiceChip(
+                           backgroundColor: CustomColors.customBlack,
                             onSelected: (value) => changeState(() {
                                   isSelected2 = value;
                                 }),
-                            selectedColor: CustomColors.customYellow,
-                            label: text(
-                                context, "Picked Orders", 0.03, Colors.black),
+                            selectedColor: CustomColors.customOrange,
+                            label: text(context, "Picked Orders", 0.03,
+                                CustomColors.customWhite),
                             selected: isSelected2),
                       ],
                     ),
@@ -207,7 +210,7 @@ Widget activeOrderCard(BuildContext context, snapshot, index, setState) {
         vertical: CustomSizes().dynamicHeight(context, 0.01),
       ),
       decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(color: CustomColors.customGrey))),
+          border: Border(bottom: BorderSide(color: CustomColors.customOrange))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -221,14 +224,14 @@ Widget activeOrderCard(BuildContext context, snapshot, index, setState) {
                       double.parse(snapshot[index]["sub_total_with_discount"])
                           .toStringAsFixed(0),
                   0.04,
-                  CustomColors.customBlack,
+                  CustomColors.customWhite,
                   bold: true),
               Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: CustomSizes().dynamicWidth(context, 0.01),
                 ),
                 decoration: BoxDecoration(
-                  color: CustomColors.customGrey,
+                  color: CustomColors.customOrange,
                   borderRadius: BorderRadius.circular(
                     CustomSizes().dynamicWidth(context, 0.05),
                   ),
@@ -237,7 +240,7 @@ Widget activeOrderCard(BuildContext context, snapshot, index, setState) {
                     context,
                     "Order no #" + snapshot[index]["sale_no"].toString(),
                     0.03,
-                    CustomColors.customBlack),
+                    CustomColors.customWhite),
               )
             ],
           ),
@@ -260,7 +263,7 @@ Widget activeOrderCard(BuildContext context, snapshot, index, setState) {
             children: [
               Icon(
                 Icons.circle_outlined,
-                color: CustomColors.customYellow,
+                color: CustomColors.customOrange,
                 size: CustomSizes().dynamicHeight(context, 0.015),
               ),
               Flexible(

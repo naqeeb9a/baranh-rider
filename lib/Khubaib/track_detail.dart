@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../Screens/new_orders.dart';
@@ -52,7 +51,7 @@ Widget rowtext(context, title, {colour = true}) {
       Icon(
         Icons.circle_outlined,
         color: colour == true
-            ? CustomColors.customYellow
+            ? CustomColors.customOrange
             : CustomColors.customGrey,
         size: CustomSizes().dynamicHeight(context, 0.016),
       ),
