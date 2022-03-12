@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:baranh_rider/utils/config.dart';
+import 'package:baranh_rider/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Khubaib/help_center.dart';
@@ -26,6 +27,7 @@ class _ProfileState extends State<Profile> {
 
     if (isRiderActive.getBool("isActive") != null) {
       setState(() {
+        userResponse = jsonDecode(userData.getString("user").toString());
         riderData = jsonDecode(userData.getString("user").toString());
         isActive = isRiderActive.getBool("isActive")!;
       });

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "254629645415",
+    "project_id": "baranh-rider",
+    "storage_bucket": "baranh-rider.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254629645415:android:3b83733c2aac4691b3d8c2",
+        "android_client_info": {
+          "package_name": "com.baranh.rider_app.baranh_rider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254629645415-i9et1tjrope1o1ua7or7thrfkmt3ht01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADnmibxzl_yU4GZxptFKX2BkUbNulZqz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254629645415-i9et1tjrope1o1ua7or7thrfkmt3ht01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

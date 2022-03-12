@@ -16,6 +16,7 @@ class _NewOrdersState extends State<NewOrders>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -74,7 +75,7 @@ cards(context, icon, text, check, {check2 = false, function = ""}) {
               CustomSizes().widthBox(context, 0.03),
               Text(
                 text,
-                style: TextStyle(color: CustomColors.customWhite),
+                style: const TextStyle(color: CustomColors.customWhite),
               )
             ],
           ),
