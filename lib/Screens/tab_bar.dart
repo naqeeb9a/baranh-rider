@@ -46,7 +46,7 @@ class _CustomTabBarState extends State<CustomTabBar>
     var riderData = jsonDecode(userData.getString("user").toString());
 
     FirebaseMessaging.onMessage.listen((RemoteMessage event) async {
-      if (event.data['id'].toString() == riderData["data"]["id"].toString()) {
+      if (event.data["page"].toString() == riderData["data"]["id"].toString()) {
         await LocalNotificationsService.instance
             .showChatNotification(
           title: '${event.notification!.title}',
