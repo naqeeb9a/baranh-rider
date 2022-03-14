@@ -36,6 +36,7 @@ class _OrderScreenState extends State<OrderScreen> {
             SizedBox(
               height: CustomSizes().dynamicHeight(context, .04),
               child: TabBar(
+                physics: const NeverScrollableScrollPhysics(),
                 indicator: BoxDecoration(
                   borderRadius: BorderRadius.circular(
                     100.0,
@@ -68,157 +69,147 @@ class _OrderScreenState extends State<OrderScreen> {
             ),
             CustomSizes().heightBox(context, .02),
             Expanded(
-              child: TabBarView(
-                children: [
-                  StreamBuilder(
-                    stream: Stream.periodic(const Duration(minutes: 1)),
-                    builder: (context, snapshot) {
-                      return FutureBuilder(
-                        future: RiderFunctionality().getRiderInfo(),
-                        builder: (context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            if (snapshot.data == false) {
-                              return retry(context);
-                            } else if (snapshot.data.length == 0) {
-                              return Center(
-                                child: text(context, "No Active Orders", 0.04,
-                                    CustomColors.customWhite),
-                              );
-                            } else {
-                              return RefreshIndicator(
-                                onRefresh: () async {
-                                  setState(() {});
-                                },
-                                child: ListView.builder(
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    if (snapshot.data[index]["delorderstatus"]
-                                                .toString() ==
-                                            "pending" ||
-                                        snapshot.data[index]["delorderstatus"]
-                                                .toString() ==
-                                            "null" ||
-                                        snapshot.data[index]["delorderstatus"]
-                                            .toString()
-                                            .isEmpty) {
-                                      return activeOrderCard(
-                                        context,
-                                        snapshot.data,
-                                        index,
-                                        setState,
-                                      );
-                                    } else {
-                                      return Container();
-                                    }
+              child: StreamBuilder(
+                  stream: Stream.periodic(const Duration(minutes: 1)),
+                  builder: (context, snapshot) {
+                    return TabBarView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        FutureBuilder(
+                          future: RiderFunctionality().getRiderInfo(),
+                          builder: (context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (snapshot.data == false) {
+                                return retry(context);
+                              } else if (snapshot.data.length == 0) {
+                                return Center(
+                                  child: text(context, "No Active Orders", 0.04,
+                                      CustomColors.customWhite),
+                                );
+                              } else {
+                                return RefreshIndicator(
+                                  onRefresh: () async {
+                                    setState(() {});
                                   },
-                                ),
-                              );
-                            }
-                          } else {
-                            return const Loader();
-                          }
-                        },
-                      );
-                    },
-                  ),
-                  StreamBuilder(
-                    stream: Stream.periodic(const Duration(minutes: 1)),
-                    builder: (context, snapshot) {
-                      return FutureBuilder(
-                        future: RiderFunctionality().getRiderInfo(),
-                        builder: (context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            if (snapshot.data == false) {
-                              return retry(context);
-                            } else if (snapshot.data.length == 0) {
-                              return Center(
-                                child: text(context, "No Active Orders", 0.04,
-                                    CustomColors.customWhite),
-                              );
+                                  child: ListView.builder(
+                                    itemCount: snapshot.data.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      if (snapshot.data[index]["delorderstatus"]
+                                                  .toString() ==
+                                              "pending" ||
+                                          snapshot.data[index]["delorderstatus"]
+                                                  .toString() ==
+                                              "null" ||
+                                          snapshot.data[index]["delorderstatus"]
+                                              .toString()
+                                              .isEmpty) {
+                                        return activeOrderCard(
+                                          context,
+                                          snapshot.data,
+                                          index,
+                                          setState,
+                                        );
+                                      } else {
+                                        return Container();
+                                      }
+                                    },
+                                  ),
+                                );
+                              }
                             } else {
-                              return RefreshIndicator(
-                                onRefresh: () async {
-                                  setState(() {});
-                                },
-                                child: ListView.builder(
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    if (snapshot.data[index]["delorderstatus"]
-                                            .toString() ==
-                                        "On the way") {
-                                      return activeOrderCard(
-                                        context,
-                                        snapshot.data,
-                                        index,
-                                        setState,
-                                      );
-                                    } else {
-                                      return Container();
-                                    }
-                                  },
-                                ),
-                              );
+                              return const Loader();
                             }
-                          } else {
-                            return const Loader();
-                          }
-                        },
-                      );
-                    },
-                  ),
-                  StreamBuilder(
-                    stream: Stream.periodic(const Duration(minutes: 1)),
-                    builder: (context, snapshot) {
-                      return FutureBuilder(
-                        future: RiderFunctionality().getRiderInfo(),
-                        builder: (context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            if (snapshot.data == false) {
-                              return retry(context);
-                            } else if (snapshot.data.length == 0) {
-                              return Center(
-                                child: text(context, "No Active Orders", 0.04,
-                                    CustomColors.customWhite),
-                              );
+                          },
+                        ),
+                        FutureBuilder(
+                          future: RiderFunctionality().getRiderInfo(),
+                          builder: (context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (snapshot.data == false) {
+                                return retry(context);
+                              } else if (snapshot.data.length == 0) {
+                                return Center(
+                                  child: text(context, "No Active Orders", 0.04,
+                                      CustomColors.customWhite),
+                                );
+                              } else {
+                                return RefreshIndicator(
+                                  onRefresh: () async {
+                                    setState(() {});
+                                  },
+                                  child: ListView.builder(
+                                    itemCount: snapshot.data.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      if (snapshot.data[index]["delorderstatus"]
+                                              .toString() ==
+                                          "On the way") {
+                                        return activeOrderCard(
+                                          context,
+                                          snapshot.data,
+                                          index,
+                                          setState,
+                                        );
+                                      } else {
+                                        return Container();
+                                      }
+                                    },
+                                  ),
+                                );
+                              }
                             } else {
-                              return RefreshIndicator(
-                                onRefresh: () async {
-                                  setState(() {});
-                                },
-                                child: ListView.builder(
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    if (snapshot.data[index]["delorderstatus"]
-                                            .toString() ==
-                                        "delivered") {
-                                      return activeOrderCard(
-                                        context,
-                                        snapshot.data,
-                                        index,
-                                        setState,
-                                      );
-                                    } else {
-                                      return Container();
-                                    }
-                                  },
-                                ),
-                              );
+                              return const Loader();
                             }
-                          } else {
-                            return const Loader();
-                          }
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
+                          },
+                        ),
+                        FutureBuilder(
+                          future: RiderFunctionality().getRiderInfo(),
+                          builder: (context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (snapshot.data == false) {
+                                return retry(context);
+                              } else if (snapshot.data.length == 0) {
+                                return Center(
+                                  child: text(context, "No Active Orders", 0.04,
+                                      CustomColors.customWhite),
+                                );
+                              } else {
+                                return RefreshIndicator(
+                                  onRefresh: () async {
+                                    setState(() {});
+                                  },
+                                  child: ListView.builder(
+                                    itemCount: snapshot.data.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      if (snapshot.data[index]["delorderstatus"]
+                                              .toString() ==
+                                          "delivered") {
+                                        return activeOrderCard(
+                                          context,
+                                          snapshot.data,
+                                          index,
+                                          setState,
+                                        );
+                                      } else {
+                                        return Container();
+                                      }
+                                    },
+                                  ),
+                                );
+                              }
+                            } else {
+                              return const Loader();
+                            }
+                          },
+                        ),
+                      ],
+                    );
+                  }),
             ),
           ],
         ),
