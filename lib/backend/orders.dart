@@ -23,7 +23,7 @@ class RiderFunctionality {
     }
   }
 
-  setOrderStatus(saleNo, reason, String delStatus,query) async {
+  setOrderStatus(saleNo, reason, String delStatus, query) async {
     SharedPreferences userData = await SharedPreferences.getInstance();
     var riderData = jsonDecode(userData.getString("user").toString());
     try {

@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../Screens/login.dart';
 import '../Screens/registration.dart';
-import '../Widgets/colorful_button.dart';
-import '../utils/app_routes.dart';
 import '../utils/config.dart';
 import '../utils/dynamic_sizes.dart';
-import 'change_password.dart';
 
 class PersonalDetails extends StatefulWidget {
   final Map riderDetails;
@@ -47,37 +44,37 @@ class _PersonalDetailsState extends State<PersonalDetails> {
           registerInputField(context, "Email", _controller,
               widget.riderDetails["email_address"],
               enable: false),
-          CustomSizes().heightBox(context, 0.05),
-          InkWell(
-            onTap: () => CustomRoutes().push(
-              context,
-              const ChangePassword(),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: CustomSizes().dynamicWidth(context, 0.05)),
-              child: Text(
-                'Change your Password',
-                style: TextStyle(
-                  color: CustomColors.customWhite,
-                  fontSize: CustomSizes().dynamicHeight(context, 0.015),
-                  fontWeight: FontWeight.w700,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-            ),
-          ),
-          CustomSizes().heightBox(context, 0.05),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: CustomSizes().dynamicWidth(context, 0.05)),
-            child: colorfulButton(
-                context,
-                "Edit Profile",
-                CustomColors.customOrange,
-                CustomColors.customOrange,
-                FontWeight.bold),
-          ),
+          // CustomSizes().heightBox(context, 0.05),
+          // InkWell(
+          //   onTap: () => CustomRoutes().push(
+          //     context,
+          //     const ChangePassword(),
+          //   ),
+          //   child: Padding(
+          //     padding: EdgeInsets.symmetric(
+          //         horizontal: CustomSizes().dynamicWidth(context, 0.05)),
+          //     child: Text(
+          //       'Change your Password',
+          //       style: TextStyle(
+          //         color: CustomColors.customWhite,
+          //         fontSize: CustomSizes().dynamicHeight(context, 0.015),
+          //         fontWeight: FontWeight.w700,
+          //         decoration: TextDecoration.underline,
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // CustomSizes().heightBox(context, 0.05),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(
+          //       horizontal: CustomSizes().dynamicWidth(context, 0.05)),
+          //   child: colorfulButton(
+          //       context,
+          //       "Edit Profile",
+          //       CustomColors.customOrange,
+          //       CustomColors.customOrange,
+          //       FontWeight.bold),
+          // ),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:baranh_rider/Khubaib/rating.dart';
 import 'package:baranh_rider/Khubaib/submit_order.dart';
+import 'package:baranh_rider/Screens/order_summary_page.dart';
 import 'package:baranh_rider/backend/orders.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +38,11 @@ class _OrderDetailState extends State<OrderDetail> {
     return Scaffold(
       backgroundColor: CustomColors.customBlack,
       appBar: customAppbar(
-          context: context,
-          text1: "Order " + widget.snapshot[widget.index]["sale_no"].toString(),
-          automaticallyImplyLeading: true,
-          backgroundColor: CustomColors.customOrange),
+        context: context,
+        text1: "Order " + widget.snapshot[widget.index]["sale_no"].toString(),
+        automaticallyImplyLeading: true,
+        backgroundColor: CustomColors.customOrange,
+      ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: Column(
@@ -139,8 +141,10 @@ class _OrderDetailState extends State<OrderDetail> {
           personCard(context,
               phoneIcon: true,
               containerColor: false,
-              name: widget.snapshot[widget.index]["customer"][0]["name"],
-              phone: widget.snapshot[widget.index]["customer"][0]["phone"]),
+              name: widget.snapshot[widget.index]["customer"][0]["name"]
+                  .toString(),
+              phone: widget.snapshot[widget.index]["customer"][0]["phone"]
+                  .toString()),
           CustomSizes().heightBox(context, 0.05),
           Padding(
             padding: EdgeInsets.symmetric(
@@ -151,19 +155,30 @@ class _OrderDetailState extends State<OrderDetail> {
           ),
           CustomSizes().heightBox(context, 0.025),
           orderBox(context, "Order Time",
-              widget.snapshot[widget.index]["order_time"]),
+              widget.snapshot[widget.index]["order_time"].toString()),
           CustomSizes().heightBox(context, 0.025),
-          orderBox(
-              context,
-              "Total items",
-              widget.snapshot[widget.index]["details"].length.toString() +
-                  " Items"),
+          InkWell(
+            onTap: () {
+              CustomRoutes().push(
+                  context,
+                  OrderSummaryPage(
+                    dataDetails: widget.snapshot,
+                    index: widget.index,
+                  ));
+            },
+            child: orderBox(
+                context,
+                "Total items",
+                widget.snapshot[widget.index]["details"].length.toString() +
+                    " Items"),
+          ),
           CustomSizes().heightBox(context, 0.025),
           orderCard(
               context,
               "B",
-              widget.snapshot[widget.index]["customer"][0]["address"],
-              widget.snapshot[widget.index]["customer"][0]["phone"],
+              widget.snapshot[widget.index]["customer"][0]["address"]
+                  .toString(),
+              widget.snapshot[widget.index]["customer"][0]["phone"].toString(),
               icon: true),
         ],
       ),

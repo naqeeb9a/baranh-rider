@@ -110,8 +110,7 @@ Widget personCard(context,
                     CustomSizes().dynamicWidth(context, 0.025),
                   ),
                   image: const DecorationImage(
-                      image: NetworkImage(
-                          "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                      image: AssetImage("assets/userPicture.png"),
                       fit: BoxFit.fitWidth),
                 ),
               ),

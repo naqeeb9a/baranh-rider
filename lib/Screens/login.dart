@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:baranh_rider/Screens/registration.dart';
 import 'package:baranh_rider/Screens/tab_bar.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
@@ -11,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Widgets/text_widget.dart';
 import '../backend/login_function.dart';
 import '../utils/config.dart';
-import '../utils/constants.dart';
 import '../utils/dynamic_sizes.dart';
 
 class Login extends StatefulWidget {
@@ -34,20 +32,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     _controller =
         AnimationController(duration: const Duration(seconds: 10), vsync: this);
     super.initState();
-    func();
-  }
-
-  func() {
-    FirebaseMessaging.instance.getToken().then((value) {
-
-
-      setState(() {
-        fireBaseToken = value;
-      });
-
-      print("\n\n\ntoken ===>>>$fireBaseToken<<<");
-      // FirebaseMessaging.instance.subscribeToTopic("rider");
-    });
   }
 
   @override
@@ -151,11 +135,12 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   }
 }
 
-customAppbar(
-    {required BuildContext context,
-    required String text1,
-    required bool automaticallyImplyLeading,
-    required Color backgroundColor}) {
+customAppbar({
+  required BuildContext context,
+  required String text1,
+  required bool automaticallyImplyLeading,
+  required Color backgroundColor,
+}) {
   return AppBar(
     automaticallyImplyLeading: automaticallyImplyLeading,
     backgroundColor: backgroundColor,
