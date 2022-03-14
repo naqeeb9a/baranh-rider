@@ -21,6 +21,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   bool isActive = false;
   Map riderData = {};
+
   getRiderInfo() async {
     SharedPreferences isRiderActive = await SharedPreferences.getInstance();
     SharedPreferences userData = await SharedPreferences.getInstance();
@@ -106,32 +107,34 @@ class _ProfileState extends State<Profile> {
               true,
               check2: true,
               function: () => CustomRoutes().push(
-                  context,
-                  PersonalDetails(
-                    riderDetails: riderData["data"],
-                  )),
+                context,
+                PersonalDetails(
+                  riderDetails: riderData["data"],
+                ),
+              ),
+
             ),
             CustomSizes().heightBox(context, 0.02),
-            cards(
-              context,
-              Icons.privacy_tip,
-              "Privacy Policy",
-              true,
-              check2: true,
-            ),
-            CustomSizes().heightBox(context, 0.02),
-            cards(context, Icons.book, "Terms and Conditions", true,
-                check2: true),
-            CustomSizes().heightBox(context, 0.02),
-            cards(
-              context,
-              Icons.contact_support,
-              "Contact Us",
-              true,
-              check2: true,
-              function: () =>
-                  CustomRoutes().push(context, const HelpCenterScreen()),
-            ),
+            // cards(
+            //   context,
+            //   Icons.privacy_tip,
+            //   "Privacy Policy",
+            //   true,
+            //   check2: true,
+            // ),
+            // CustomSizes().heightBox(context, 0.02),
+            // cards(context, Icons.book, "Terms and Conditions", true,
+            //     check2: true),
+            // CustomSizes().heightBox(context, 0.02),
+            // cards(
+            //   context,
+            //   Icons.contact_support,
+            //   "Contact Us",
+            //   true,
+            //   check2: true,
+            //   function: () =>
+            //       CustomRoutes().push(context, const HelpCenterScreen()),
+            // ),
             CustomSizes().heightBox(context, 0.02),
             cards(context, Icons.logout, "Logout", true, check2: true,
                 function: () async {
