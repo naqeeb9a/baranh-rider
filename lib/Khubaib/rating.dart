@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Screens/new_orders.dart';
 import '../Widgets/colorful_button.dart';
@@ -127,9 +128,19 @@ Widget personCard(context,
         ),
         CustomSizes().widthBox(context, 0.3),
         phoneIcon == true
-            ? const Icon(
-                Icons.phone,
-                color: CustomColors.customGreen,
+            ? GestureDetector(
+                onTap: () async {
+                  
+
+
+                  await canLaunch("tel:$phone")
+                      ? await launch("tel:$phone")
+                      : throw 'Could not launch $phone';
+                },
+                child: const Icon(
+                  Icons.phone,
+                  color: CustomColors.customGreen,
+                ),
               )
             : CustomSizes().widthBox(context, 0.1),
       ],

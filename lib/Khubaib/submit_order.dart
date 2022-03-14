@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Screens/new_orders.dart';
 import '../Widgets/text_widget.dart';
@@ -97,9 +98,16 @@ Widget orderCard(context, index, text1, mobileNumber, {icon = false}) {
                     ],
                   ),
                   icon == true
-                      ? const Icon(
-                          Icons.phone,
-                          color: CustomColors.customGreen,
+                      ? GestureDetector(
+                          onTap: () async {
+                            await canLaunch("tel:$mobileNumber")
+                                ? await launch("tel:$mobileNumber")
+                                : throw 'Could not launch $mobileNumber';
+                          },
+                          child: const Icon(
+                            Icons.phone,
+                            color: CustomColors.customGreen,
+                          ),
                         )
                       : Container(),
                 ],

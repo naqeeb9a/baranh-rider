@@ -104,29 +104,27 @@ class _CustomTabBarState extends State<CustomTabBar>
               ),
             ),
             bottomNavigationBar: Container(
-              height: CustomSizes().dynamicHeight(context, 0.07),
+              height: CustomSizes().dynamicHeight(context, 0.08),
               color: CustomColors.customBlack.withOpacity(.9),
               child: TabBar(
                 indicatorSize: TabBarIndicatorSize.label,
-                labelStyle: const TextStyle(color: CustomColors.customGrey),
-                unselectedLabelColor: CustomColors.customWhite,
+                labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+                unselectedLabelColor: CustomColors.customGrey,
                 unselectedLabelStyle:
-                    const TextStyle(color: CustomColors.customGrey),
+                    const TextStyle(fontWeight: FontWeight.normal),
                 controller: _tabController,
                 labelColor: CustomColors.customOrange,
-                indicatorColor: CustomColors.customOrange,
+                indicatorColor: CustomColors.customBlack.withOpacity(.9),
                 tabs: const [
                   Tab(
                       text: "Order",
                       icon: Icon(
                         Icons.list,
-                        color: CustomColors.customOrange,
                       )),
                   Tab(
                       text: "Profile",
                       icon: Icon(
                         Icons.person,
-                        color: CustomColors.customOrange,
                       )),
                 ],
               ),

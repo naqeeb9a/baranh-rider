@@ -52,9 +52,15 @@ class RiderFunctionality {
     SharedPreferences userData = await SharedPreferences.getInstance();
     var riderData = jsonDecode(userData.getString("user").toString());
     try {
+
+
+
       var res = await http.get(Uri.parse(
           "https://riders.baranh.pk/api/getorders/${riderData["data"]["id"]}"));
       var jsonData = jsonDecode(res.body);
+
+
+
 
       if (res.statusCode == 200) {
         return jsonData["data"];

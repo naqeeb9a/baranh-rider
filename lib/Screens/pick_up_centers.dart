@@ -49,13 +49,18 @@ class PickUpCenters extends StatelessWidget {
 
   pickUpCentersCard(context, AsyncSnapshot snapshot, index) {
     return Container(
-      margin: EdgeInsets.all(CustomSizes().dynamicWidth(context, 0.02)),
+      margin: EdgeInsets.all(
+        CustomSizes().dynamicWidth(context, 0.02),
+      ),
       padding: EdgeInsets.symmetric(
-          horizontal: CustomSizes().dynamicWidth(context, 0.04)),
+        horizontal: CustomSizes().dynamicWidth(context, 0.04),
+      ),
       decoration: BoxDecoration(
-          color: CustomColors.customGrey.withOpacity(0.3),
-          borderRadius:
-              BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04))),
+        color: CustomColors.customGrey.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(
+          CustomSizes().dynamicWidth(context, 0.04),
+        ),
+      ),
       child: Column(
         children: [
           const SizedBox(
@@ -71,16 +76,19 @@ class PickUpCenters extends StatelessWidget {
             leading: text(context, snapshot.data[index]["pick_up_location"],
                 0.04, CustomColors.customBlack),
             trailing: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DisplayMap(
-                                latitude: snapshot.data[index]["lat"],
-                                longitude: snapshot.data[index]["lng"],
-                              )));
-                },
-                child: const Icon(Icons.location_pin)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DisplayMap(
+                      latitude: snapshot.data[index]["lat"],
+                      longitude: snapshot.data[index]["lng"],
+                    ),
+                  ),
+                );
+              },
+              child: const Icon(Icons.location_pin),
+            ),
           ),
         ],
       ),
