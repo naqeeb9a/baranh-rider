@@ -1,14 +1,15 @@
 import 'package:baranh_rider/utils/config.dart';
 import 'package:baranh_rider/utils/dynamic_sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Screens/login.dart';
+import '../Screens/order_summary_page.dart';
 import '../Widgets/buttons.dart';
 import '../Widgets/loader.dart';
 import '../Widgets/text_widget.dart';
 import '../backend/orders.dart';
 import '../utils/app_routes.dart';
-import 'order_detail.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
@@ -70,7 +71,7 @@ class _OrderScreenState extends State<OrderScreen> {
             CustomSizes().heightBox(context, .02),
             Expanded(
               child: StreamBuilder(
-                  stream: Stream.periodic(const Duration(minutes: 1)),
+                  stream: Stream.periodic(const Duration(minutes: 10)),
                   builder: (context, snapshot) {
                     return TabBarView(
                       physics: const NeverScrollableScrollPhysics(),
@@ -219,97 +220,153 @@ class _OrderScreenState extends State<OrderScreen> {
 }
 
 Widget activeOrderCard(BuildContext context, snapshot, index, setState) {
-  return InkWell(
-    onTap: () {
-      CustomRoutes().push(
-          context,
-          OrderDetail(
-            snapshot: snapshot,
-            index: index,
-            stateChange: setState,
-          ));
-    },
-    child: Container(
-      width: CustomSizes().dynamicWidth(context, 1),
-      height: CustomSizes().dynamicHeight(context, 0.24),
-      padding: EdgeInsets.symmetric(
-        horizontal: CustomSizes().dynamicWidth(context, 0.05),
-        vertical: CustomSizes().dynamicHeight(context, 0.01),
+  return Container(
+    width: CustomSizes().dynamicWidth(context, 1),
+    height: CustomSizes().dynamicHeight(context, 0.4),
+    padding: EdgeInsets.symmetric(
+      horizontal: CustomSizes().dynamicWidth(context, 0.05),
+      vertical: CustomSizes().dynamicHeight(context, 0.01),
+    ),
+    margin: EdgeInsets.symmetric(
+      horizontal: CustomSizes().dynamicWidth(context, 0.04),
+      vertical: CustomSizes().dynamicHeight(context, 0.01),
+    ),
+    decoration: BoxDecoration(
+      color: CustomColors.customLiteBlack,
+      borderRadius: BorderRadius.circular(
+        CustomSizes().dynamicWidth(context, 0.04),
       ),
-      decoration: const BoxDecoration(
-          border: Border(bottom: BorderSide(color: CustomColors.customOrange))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              text(
-                  context,
-                  "PKR " +
-                      double.parse(snapshot[index]["sub_total_with_discount"])
-                          .toStringAsFixed(0),
-                  0.04,
-                  CustomColors.customWhite,
-                  bold: true),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: CustomSizes().dynamicWidth(context, 0.01),
-                ),
-                decoration: BoxDecoration(
-                  color: CustomColors.customOrange,
-                  borderRadius: BorderRadius.circular(
-                    CustomSizes().dynamicWidth(context, 0.05),
-                  ),
-                ),
-                child: text(
-                    context,
-                    "Order no #" + snapshot[index]["sale_no"].toString(),
-                    0.03,
-                    CustomColors.customWhite),
-              )
-            ],
-          ),
-          text(
+      border: Border.all(
+        color: CustomColors.customOrange,
+      ),
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            text(
               context,
-              snapshot[index]["delorderstatus"] == "pending" ||
-                      snapshot[index]["delorderstatus"] == null
-                  ? "New Order to pick"
-                  : snapshot[index]["delorderstatus"] == "delivered"
-                      ? "Delivered"
-                      : "Order is on the way",
-              0.035,
-              snapshot[index]["delorderstatus"] == "pending" ||
-                      snapshot[index]["delorderstatus"] == null
-                  ? CustomColors.customRed
-                  : CustomColors.customGreen,
-              bold: true),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.circle_outlined,
-                color: CustomColors.customOrange,
-                size: CustomSizes().dynamicHeight(context, 0.015),
+              "Order No: ${snapshot[index]["sale_no"].toString()}",
+              .04,
+              CustomColors.customWhite,
+              bold: true,
+            ),
+            text(
+              context,
+              "Time: ${snapshot[index]["order_time"].toString()}",
+              .04,
+              CustomColors.customWhite,
+              bold: true,
+            ),
+          ],
+        ),
+        text(
+          context,
+          (snapshot[index]["delorderstatus"].toString() == "pending" ||
+                  snapshot[index]["delorderstatus"].toString() == "null" ||
+                  snapshot[index]["delorderstatus"].toString().isEmpty)
+              ? "Current Status: New Order to pick"
+              : snapshot[index]["delorderstatus"].toString() == "On the way"
+                  ? "Current Status: Order is on the way"
+                  : "Current Status: Delivered",
+          .04,
+          (snapshot[index]["delorderstatus"].toString() == "pending" ||
+                  snapshot[index]["delorderstatus"].toString() == "null" ||
+                  snapshot[index]["delorderstatus"].toString().isEmpty)
+              ? CustomColors.customRed
+              : CustomColors.customGreen,
+          bold: true,
+        ),
+        Row(
+          children: [
+            text(
+              context,
+              "Customer Phone: ${snapshot[index]["customer"][0]["phone"].toString()}",
+              .04,
+              CustomColors.customWhite,
+              bold: true,
+            ),
+            CustomSizes().widthBox(context, .1),
+            InkWell(
+              onTap: () async {
+                await canLaunch(
+                        "tel:${snapshot[index]["customer"][0]["phone"].toString()}")
+                    ? await launch(
+                        "tel:${snapshot[index]["customer"][0]["phone"].toString()}")
+                    : throw 'Could not launch ${snapshot[index]["customer"][0]["phone"].toString()}';
+              },
+              child: const CircleAvatar(
+                backgroundColor: CustomColors.customBlack,
+                child: Icon(Icons.phone),
               ),
-              Flexible(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: CustomSizes().dynamicWidth(context, 0.05)),
-                  child: text(
-                      context,
-                      snapshot[index]["customer"][0]["address"].toString(),
-                      0.035,
-                      CustomColors.customLightBlack,
-                      bold: true),
+            ),
+          ],
+        ),
+        text(
+          context,
+          "Cooking Status: -----",
+          .04,
+          CustomColors.customWhite,
+        ),
+        text(
+          context,
+          "Customer Name: ${snapshot[index]["customer"][0]["name"].toString()}",
+          .04,
+          CustomColors.customWhite,
+        ),
+        text(
+          context,
+          "Amount: PKR ${double.parse(snapshot[index]["sub_total_with_discount"]).toStringAsFixed(0)}",
+          0.04,
+          CustomColors.customWhite,
+          bold: true,
+        ),
+        text(
+          context,
+          "Payment Status: ${snapshot[index]["sub_total_with_discount"].toString()}",
+          0.04,
+          CustomColors.customWhite,
+          bold: true,
+        ),
+        text(
+          context,
+          "Address: ${snapshot[index]["customer"][0]["address"].toString()}",
+          0.04,
+          CustomColors.customWhite,
+          bold: true,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            coloredButton(
+                context,
+                "Items (${snapshot[index]["details"].length.toString()})",
+                CustomColors.customOrange,
+                width: CustomSizes().dynamicWidth(context, .36), function: () {
+              CustomRoutes().push(
+                context,
+                OrderSummaryPage(
+                  dataDetails: snapshot,
+                  index: index,
                 ),
-              ),
-            ],
-          ),
-          CustomSizes().heightBox(context, 0.02)
-        ],
-      ),
+              );
+            }),
+            coloredButton(context, "Pick", CustomColors.customOrange,
+                width: CustomSizes().dynamicWidth(context, .36), function: () {
+              CustomRoutes().push(
+                context,
+                OrderSummaryPage(
+                  dataDetails: snapshot,
+                  index: index,
+                ),
+              );
+            }),
+          ],
+        ),
+      ],
     ),
   );
 }

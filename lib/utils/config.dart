@@ -4,12 +4,11 @@ class CustomColors {
   static const customOrange = Color(0xffff6624);
 
   static const customSkimColor = Colors.white60;
-
   static const customLightBlack = Color(0xffffffff);
-
   static const customWhite = Color(0xffffffff);
   static const customGrey = Colors.grey;
   static const customBlack = Color(0xff000000);
+  static const customLiteBlack = Color(0xff333333);
   static const customGreen = Color(0xFF008000);
   static const customRed = Color(0xFFff0000);
   static const noColor = Colors.transparent;
