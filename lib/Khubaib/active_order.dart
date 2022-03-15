@@ -1,13 +1,4 @@
-import 'package:baranh_rider/backend/orders.dart';
-import 'package:flutter/material.dart';
 
-import '../Widgets/buttons.dart';
-import '../Widgets/loader.dart';
-import '../Widgets/text_widget.dart';
-import '../utils/app_routes.dart';
-import '../utils/config.dart';
-import '../utils/dynamic_sizes.dart';
-import 'order_detail.dart';
 
 // class ActiveOrder extends StatefulWidget {
 //   const ActiveOrder({Key? key}) : super(key: key);
