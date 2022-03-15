@@ -344,7 +344,18 @@ class _ActiveOrderCardState extends State<ActiveOrderCard> {
           ),
           text(
             context,
-            "Cooking Status: -----",
+            (widget.snapshot[index]["cooking_start_time"].toString() ==
+                        "0000-00-00 00:00:00" &&
+                    widget.snapshot[index]["cooking_done_time"].toString() ==
+                        "0000-00-00 00:00:00")
+                ? "Cooking Status: Pending"
+                : (widget.snapshot[index]["cooking_start_time"].toString() !=
+                            "0000-00-00 00:00:00" &&
+                        widget.snapshot[index]["cooking_done_time"]
+                                .toString() !=
+                            "0000-00-00 00:00:00")
+                    ? "Cooking Status: Done"
+                    : "Cooking Status: Cooking",
             .04,
             CustomColors.customWhite,
           ),
@@ -363,7 +374,9 @@ class _ActiveOrderCardState extends State<ActiveOrderCard> {
           ),
           text(
             context,
-            "Payment Status: ----",
+            widget.snapshot[index]["paid_amount"].toString() == "null"
+                ? "Payment Status: Pending"
+                : "Payment Status: Paid",
             0.04,
             CustomColors.customWhite,
             bold: true,
