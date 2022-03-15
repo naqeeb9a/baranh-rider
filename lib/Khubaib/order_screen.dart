@@ -21,6 +21,10 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
+  set() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -94,6 +98,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               child: ActiveOrderCard(
                                 snapshot: snapshot.data,
                                 tabName: "New Orders",
+                                // setState: set(),
                               ));
                         }
                       } else {
@@ -120,6 +125,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               child: ActiveOrderCard(
                                 snapshot: snapshot.data,
                                 tabName: "Picked Orders",
+                                // setState: set(),
                               ));
                         }
                       } else {
@@ -146,6 +152,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               child: ActiveOrderCard(
                                 snapshot: snapshot.data,
                                 tabName: "Delivered Orders",
+                                // setState: set(),
                               ));
                         }
                       } else {
@@ -166,12 +173,14 @@ class _OrderScreenState extends State<OrderScreen> {
 // ignore: must_be_immutable
 class ActiveOrderCard extends StatefulWidget {
   dynamic snapshot;
+  final dynamic setState;
   final String tabName;
 
   ActiveOrderCard({
     Key? key,
     required this.snapshot,
     required this.tabName,
+    this.setState,
   }) : super(key: key);
 
   @override
@@ -180,6 +189,7 @@ class ActiveOrderCard extends StatefulWidget {
 
 class _ActiveOrderCardState extends State<ActiveOrderCard> {
   Timer? _timer;
+
   startUpdating() {
     _timer = Timer.periodic(const Duration(seconds: 10), (t) async {
       var res = await RiderFunctionality().getRiderInfo();
@@ -214,7 +224,11 @@ class _ActiveOrderCardState extends State<ActiveOrderCard> {
                   if (widget.tabName == "New Orders") {
                     if (widget.snapshot[index]["delorderstatus"].toString() ==
                             "pending" ||
-                        widget.snapshot[index]["delorderstatus"] == null) {
+                        widget.snapshot[index]["delorderstatus"].toString() ==
+                            "null" ||
+                        widget.snapshot[index]["delorderstatus"]
+                            .toString()
+                            .isEmpty) {
                       return actualCard(index);
                     } else {
                       return Container();
@@ -351,7 +365,7 @@ class _ActiveOrderCardState extends State<ActiveOrderCard> {
           ),
           text(
             context,
-            "Payment Status: ${widget.snapshot[index]["sub_total_with_discount"].toString()}",
+            "Payment Status: ----",
             0.04,
             CustomColors.customWhite,
             bold: true,
@@ -380,17 +394,80 @@ class _ActiveOrderCardState extends State<ActiveOrderCard> {
                   ),
                 );
               }),
-              coloredButton(context, "Pick", CustomColors.customGreen,
-                  width: CustomSizes().dynamicWidth(context, .36),
-                  function: () {
-                CustomRoutes().push(
-                  context,
-                  OrderSummaryPage(
-                    dataDetails: widget.snapshot,
-                    index: index,
-                  ),
-                );
-              }),
+              widget.snapshot[index]["delorderstatus"].toString() == "delivered"
+                  ? coloredButton(
+                      context,
+                      "Delivered",
+                      CustomColors.customGreen,
+                      width: CustomSizes().dynamicWidth(context, .36),
+                    )
+                  : coloredButton(
+                      context,
+                      (widget.snapshot[index]["delorderstatus"]
+                                      .toString() ==
+                                  "pending" ||
+                              widget.snapshot[index]["delorderstatus"]
+                                      .toString() ==
+                                  "null" ||
+                              widget.snapshot[index]["delorderstatus"]
+                                  .toString()
+                                  .isEmpty)
+                          ? "Pick"
+                          : "Deliver",
+                      CustomColors.customGreen,
+                      width: CustomSizes().dynamicWidth(context, .36),
+                      function: () async {
+                        var res = await RiderFunctionality().setOrderStatus(
+                          widget.snapshot[index]["sale_no"],
+                          "not at home",
+                          (widget.snapshot[index]["delorderstatus"]
+                                          .toString() ==
+                                      "pending" ||
+                                  widget.snapshot[index]["delorderstatus"]
+                                          .toString() ==
+                                      "null" ||
+                                  widget.snapshot[index]["delorderstatus"]
+                                      .toString()
+                                      .isEmpty)
+                              ? "0"
+                              : "1",
+                          (widget.snapshot[index]["delorderstatus"]
+                                          .toString() ==
+                                      "pending" ||
+                                  widget.snapshot[index]["delorderstatus"]
+                                          .toString() ==
+                                      "null" ||
+                                  widget.snapshot[index]["delorderstatus"]
+                                      .toString()
+                                      .isEmpty)
+                              ? "proceed"
+                              : "deliver",
+                        );
+                        if (res == false) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: text(
+                                context,
+                                "Check your internt or tey again",
+                                0.04,
+                                CustomColors.customWhite,
+                              ),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: text(
+                                context,
+                                "Success",
+                                0.04,
+                                CustomColors.customWhite,
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    ),
             ],
           ),
         ],
