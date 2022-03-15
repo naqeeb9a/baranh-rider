@@ -21,10 +21,6 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  set() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -98,7 +94,9 @@ class _OrderScreenState extends State<OrderScreen> {
                               child: ActiveOrderCard(
                                 snapshot: snapshot.data,
                                 tabName: "New Orders",
-                                // setState: set(),
+                                setState: () {
+                                  setState(() {});
+                                },
                               ));
                         }
                       } else {
@@ -465,6 +463,7 @@ class _ActiveOrderCardState extends State<ActiveOrderCard> {
                               ),
                             ),
                           );
+                          widget.setState();
                         }
                       },
                     ),
