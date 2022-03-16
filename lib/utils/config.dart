@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class CustomColors {
   static const customOrange = Color(0xffff6624);
-
   static const customSkimColor = Colors.white60;
   static const customLightBlack = Color(0xffffffff);
   static const customWhite = Color(0xffffffff);
