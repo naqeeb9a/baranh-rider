@@ -1,3 +1,4 @@
+import 'package:baranh_rider/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../Widgets/colorful_button.dart';
@@ -19,6 +20,7 @@ class _RegistrationState extends State<Registration> {
   final TextEditingController _firstname = TextEditingController();
   final TextEditingController _lastname = TextEditingController();
   final TextEditingController _mobile = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,7 +119,7 @@ Widget multiColorText(context, text, text1) {
 
 Widget registerInputField(
     context, text1, TextEditingController controller, hintText,
-    {bool password = false, bool enable = true}) {
+    {bool password = false, bool enable = true, passFunc = ""}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,16 +132,19 @@ Widget registerInputField(
       TextFormField(
         controller: controller,
         enabled: enable,
-        obscureText: password == true ? true : false,
+        obscureText: password == true ? obscureText : false,
         cursorColor: Colors.white,
         style: const TextStyle(color: CustomColors.customWhite),
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(color: CustomColors.customWhite),
           suffixIcon: password == true
-              ? const InkWell(
-                  child: Icon(Icons.visibility_outlined,
-                      color: CustomColors.customWhite),
+              ? InkWell(
+                  onTap: passFunc == "" ? () {} : passFunc,
+                  child: const Icon(
+                    Icons.visibility_outlined,
+                    color: CustomColors.customWhite,
+                  ),
                 )
               : null,
           focusedBorder: UnderlineInputBorder(

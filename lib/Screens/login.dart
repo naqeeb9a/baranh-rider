@@ -69,8 +69,18 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                   enable: fieldEnable),
               CustomSizes().heightBox(context, 0.03),
               registerInputField(
-                  context, "Password", _password, "Enter your password",
-                  password: true, enable: fieldEnable),
+                context,
+                "Password",
+                _password,
+                "Enter your password",
+                password: true,
+                enable: fieldEnable,
+                passFunc: () {
+                  setState(() {
+                    obscureText = !obscureText;
+                  });
+                }
+              ),
               CustomSizes().heightBox(context, 0.3),
               Padding(
                   padding: EdgeInsets.symmetric(
